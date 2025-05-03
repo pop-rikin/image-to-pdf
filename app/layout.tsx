@@ -1,5 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Lexend } from 'next/font/google'
+
+const lexend = Lexend({ 
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600'],
+  display: 'swap',
+  variable: '--font-lexend',
+})
 
 export const metadata: Metadata = {
   title: 'v0 App',
@@ -14,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${lexend.className} font-light`}>{children}</body>
     </html>
   )
 }

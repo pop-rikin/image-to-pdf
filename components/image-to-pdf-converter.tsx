@@ -301,7 +301,7 @@ export function ImageToPdfConverter() {
                 type="text"
                 value={outputFilename}
                 onChange={(e) => setOutputFilename(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[14px]"
                 placeholder="Enter filename without extension"
               />
             </div>
@@ -315,7 +315,7 @@ export function ImageToPdfConverter() {
                 id="orientation"
                 value={orientation}
                 onChange={(e) => setOrientation(e.target.value as OrientationOption)}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[14px]"
               >
                 <option value="auto">Auto (Based on Image)</option>
                 <option value="portrait">Portrait</option>
@@ -332,7 +332,7 @@ export function ImageToPdfConverter() {
                 id="pageSize"
                 value={pageSize}
                 onChange={(e) => setPageSize(e.target.value as PageSizeOption)}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[14px]"
               >
                 <option value="a4">A4</option>
                 <option value="letter">Letter</option>

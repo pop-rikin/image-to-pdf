@@ -102,3 +102,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Custom font size for select options */
+option {
+  font-size: 14px;
+}
