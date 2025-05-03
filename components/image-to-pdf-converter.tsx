@@ -29,8 +29,8 @@ type PageSizeOption = "a4" | "letter" | "legal"
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB limit per image
 const MAX_TOTAL_SIZE = 50 * 1024 * 1024 // 50MB total limit
-const MAX_HEIGHT = 480 // Max height constraint
-const PREVIEW_HEIGHT = 120 // Height for image previews
+const MAX_HEIGHT = 520 // Max app height constraint
+const PREVIEW_HEIGHT = 80 // Reduced height for image previews
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"]
 
 const PAGE_SIZES = {
@@ -251,18 +251,18 @@ export function ImageToPdfConverter() {
   }
 
   return (
-    <div className="space-y-4">
-      <div className="bg-white rounded-lg border p-4 shadow-sm">
+    <div className="space-y-3 max-h-[520px] overflow-auto">
+      <div className="bg-white rounded-lg border p-3 shadow-sm">
         {/* File input */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex items-center justify-center w-full">
             <label
               htmlFor="image-upload"
-              className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <UploadIcon className="w-8 h-8 mb-2 text-gray-500" />
-                <p className="mb-2 text-sm text-gray-500">
+              <div className="flex flex-col items-center justify-center pt-3 pb-3">
+                <UploadIcon className="w-6 h-6 mb-1 text-gray-500" />
+                <p className="mb-1 text-sm text-gray-500">
                   <span className="font-semibold">Click to upload</span> or drag and drop
                 </p>
                 <p className="text-xs text-gray-500">
@@ -290,7 +290,7 @@ export function ImageToPdfConverter() {
           )}
 
           {/* PDF Settings */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Filename input */}
             <div className="flex flex-col space-y-1.5">
               <label htmlFor="filename" className="text-sm font-medium text-gray-700">
@@ -344,8 +344,8 @@ export function ImageToPdfConverter() {
 
         {/* Image previews */}
         {images.length > 0 && (
-          <div className="mt-4 relative">
-            <div className="flex justify-between items-center mb-2">
+          <div className="mt-3 relative">
+            <div className="flex justify-between items-center mb-1">
               <h3 className="text-sm font-medium text-gray-700">
                 {images.length} {images.length === 1 ? "Image" : "Images"} Selected
               </h3>
@@ -372,8 +372,8 @@ export function ImageToPdfConverter() {
               
               <div
                 ref={galleryRef}
-                className="flex space-x-2 overflow-x-auto py-2 max-w-full scrollbar-hide"
-                style={{ maxHeight: `${PREVIEW_HEIGHT + 40}px` }}
+                className="flex space-x-2 overflow-x-auto py-1 max-w-full scrollbar-hide"
+                style={{ maxHeight: `${PREVIEW_HEIGHT + 20}px` }}
               >
                 {images.map((image, index) => (
                   <div key={image.id} className="relative shrink-0 border rounded">
@@ -383,32 +383,32 @@ export function ImageToPdfConverter() {
                       className="object-cover rounded"
                       style={{ height: `${PREVIEW_HEIGHT}px`, width: 'auto' }}
                     />
-                    <div className="absolute top-1 right-1 flex flex-col gap-1">
+                    <div className="absolute top-0.5 right-0.5 flex flex-col gap-0.5">
                       <button
                         onClick={() => removeImage(image.id)}
-                        className="bg-white rounded-full p-1 shadow hover:bg-red-50"
+                        className="bg-white rounded-full p-0.5 shadow hover:bg-red-50"
                         title="Remove image"
                       >
-                        <XIcon className="h-3 w-3 text-red-500" />
+                        <XIcon className="h-2.5 w-2.5 text-red-500" />
                       </button>
                       <button
                         onClick={() => moveImage(image.id, 'up')}
-                        className="bg-white rounded-full p-1 shadow hover:bg-blue-50"
+                        className="bg-white rounded-full p-0.5 shadow hover:bg-blue-50"
                         title="Move up"
                         disabled={index === 0}
                       >
-                        <MoveUpIcon className="h-3 w-3 text-blue-500" />
+                        <MoveUpIcon className="h-2.5 w-2.5 text-blue-500" />
                       </button>
                       <button
                         onClick={() => moveImage(image.id, 'down')}
-                        className="bg-white rounded-full p-1 shadow hover:bg-blue-50"
+                        className="bg-white rounded-full p-0.5 shadow hover:bg-blue-50"
                         title="Move down"
                         disabled={index === images.length - 1}
                       >
-                        <MoveDownIcon className="h-3 w-3 text-blue-500" />
+                        <MoveDownIcon className="h-2.5 w-2.5 text-blue-500" />
                       </button>
                     </div>
-                    <div className="absolute bottom-1 left-1 bg-black/60 text-white text-xs py-0.5 px-1.5 rounded">
+                    <div className="absolute bottom-0.5 left-0.5 bg-black/60 text-white text-xs py-0 px-1 rounded text-[10px]">
                       {index + 1}
                     </div>
                   </div>
@@ -429,7 +429,7 @@ export function ImageToPdfConverter() {
         )}
 
         {/* Convert button */}
-        <div className="mt-4">
+        <div className="mt-3">
           <Button
             onClick={generatePdf}
             disabled={loading || images.length === 0}
